@@ -3,6 +3,7 @@
 * **Suwandi Kurniawan** - *1906299175* - *A*
 * **Trisetio Putra** - *1906308053 - *A*
 * **Muhammad Halim Susilo** - *1906399796 - *A*
+* **Ardita Sophii Ayustine** - *1706043701 - *A*
 
 ---
 **Kontrak Tahap 1 Tugas Akhir**
