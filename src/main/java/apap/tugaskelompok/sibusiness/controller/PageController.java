@@ -13,4 +13,9 @@ public class PageController {
     private String home(HttpServletRequest request, Model model) {
         return "home";
     }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
