@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" style="height:100%">
 <head>
     <meta charset="UTF-8" />
     <title>403 Forbidden</title>
@@ -17,12 +17,16 @@
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
+<body style="height:100%">
 <nav th:replace="fragments/fragment :: navbar('')"></nav>
-<div class="container-fluid">
-    <h2>Forbidden</h2>
-    <h5>Maaf, fitur ini hanya dapat digunakan oleh Role <span style="color: #e0a800;font-weight: bold;">Manager Business</span></h5>
-    <a th:href="@{/}"> Kembali ke home</a>
+<div class="container text-center" style="height:100%">
+    <div class="row h-100">
+        <div class="col-12 my-auto mx-auto">
+            <h2>Forbidden</h2>
+            <h5>Maaf, fitur ini hanya dapat digunakan oleh Role <span style="color: #e0a800;font-weight: bold;">Manager Business</span></h5>
+            <a th:href="@{/}"> Kembali ke home</a>
+        </div>
+    </div>
 </div>
 <footer th:replace="fragments/fragment :: footer"></footer>
 </body>
