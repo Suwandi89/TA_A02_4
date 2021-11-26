@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Home</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar('Home')"></nav>
+<header class="text-center text-white masthead" id="backdrop">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1>Welcome to</h1>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <h1 class="display-4">SI-BUSINESS</h1>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="text-center bg-light features-icons">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+          <div class="d-flex features-icons-icon"><i class="icon-user m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+          <h3><strong>Tambahkan User</strong><br></h3>
+          <p class="lead mb-0">SI-BUSINESS mendukung pembuatan hingga pemberian peran ke user</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+          <div class="d-flex features-icons-icon"><i class="icon-tag m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+          <h3>Siapkan Kupon</h3>
+          <p class="lead mb-0">Beri impresi baik kepada pelanggan dengan personalisasi kupon</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+          <div class="d-flex features-icons-icon"><i class="icon-basket-loaded m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+          <h3>Item</h3>
+          <p class="lead mb-0">Lorem ipsum dolor sit amet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+      <div class="col col-lg-6 my-auto">
+        <h2 class="text-center"><strong>Tambahkan User</strong><br></h2>
+        <div class="row">
+          <div class="col d-flex justify-content-center mt-2"><button class="btn btn-primary" type="button">Lihat</button></div>
+        </div>
+      </div>
+      <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+        <p class="lead text-left mb-0">SI-BUSINESS mendukung pembuatan User, pengubahan User, hingga pemberian peran kepada User</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col col-lg-6 order-lg-2 my-auto">
+        <h2 class="text-center"><strong>Siapkan Kupon</strong><br></h2>
+        <div class="row">
+          <div class="col d-flex justify-content-center mt-2"><button class="btn btn-primary" type="button">Lihat</button></div>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-0 my-auto order-lg-1 showcase-text">
+        <p class="lead text-left mb-0">Beri impresi baik kepada pelanggan dengan personalisasi kupon, tambah, hapus, hingga ubah!</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col col-lg-6 my-auto">
+        <h2 class="text-center"><strong>Item</strong><br></h2>
+        <div class="row">
+          <div class="col d-flex justify-content-center mt-2"><button class="btn btn-primary" type="button">Lihat</button></div>
+        </div>
+      </div>
+      <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+        <p class="lead text-left mb-0">SI-BUSINESS mendukung pembuatan Item, pengubahan Item, dan layanan lainnya</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="text-center bg-light testimonials">
+  <div class="container">
+    <h2 class="mb-5">Tim Pengembang</h2>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="img/testimonials-2.jpg">
+          <h5>Trisetio Putra</h5>
+          <p class="font-weight-light mb-0"></p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="img/testimonials-2.jpg">
+          <h5><strong>Muhammad Halim Susilo</strong><br></h5>
+          <p class="font-weight-light mb-0"></p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3" src="img/testimonials-2.jpg">
+          <h5>Suwandi Kurniawan</h5>
+          <p class="font-weight-light mb-0"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="text-center text-white call-to-action" id="footer-bg">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <form>
+          <div class="form-row">
+            <div class="col"><button class="btn btn-primary btn-block btn-lg justify-content-center" type="submit">Sign up!</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+
+</html>
