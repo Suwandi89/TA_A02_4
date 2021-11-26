@@ -107,11 +107,35 @@
 .navigation-clean-button .navbar-text .action-button:hover {
   background: #66d7d7;
 }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.submit {
+  border: none;
+  padding: 15px 70px;
+  border-radius: 8px;
+  display: block;
+  margin: auto;
+  background: #583672;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+  -moz-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+  box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+}
+
 #backdrop{
-    background: url("/img/bg-masthead.jpg") no-repeat center center;
+    background: url("../img/bg-masthead.jpg") no-repeat center center;
     background-size:cover;
 }
 #footer-bg{
-    background: url("/img/bg-masthead.jpg") no-repeat center center;
+    background: url("../img/bg-masthead.jpg") no-repeat center center;
     background-size:cover;
 }

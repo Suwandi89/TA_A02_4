@@ -20,23 +20,12 @@
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
   </head>
 </head>
 <body>
-<nav class="navbar navbar-light navbar-expand-lg navigation-clean-button">
-  <div class="container"><a class="navbar-brand" href="#">SI-BUSINESS</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navcol-1">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link active" href="#">User</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Item</a></li>
-        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Kupon</a>
-          <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-        </li>
-      </ul>
-      <span class="navbar-text actions"><a class="btn btn-light action-button" role="button" th:href="@{/logout}">Log Out</a></span>
-    </div>
-  </div>
-</nav>
+<nav th:replace="fragments/fragment :: navbar('Home')"></nav>
 <header class="text-center text-white masthead" id="backdrop">
   <div class="overlay"></div>
   <div class="container">
@@ -145,31 +134,7 @@
     </div>
   </div>
 </section>
-<footer class="bg-light footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 text-center text-lg-left my-auto h-100">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><a href="#">About</a></li>
-          <li class="list-inline-item"><span>⋅</span></li>
-          <li class="list-inline-item"><a href="#">Contact</a></li>
-          <li class="list-inline-item"><span>⋅</span></li>
-          <li class="list-inline-item"><a href="#">Terms of &nbsp;Use</a></li>
-          <li class="list-inline-item"><span>⋅</span></li>
-          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        </ul>
-        <p class="text-muted small mb-4 mb-lg-0">© Brand 2021. All Rights Reserved.</p>
-      </div>
-      <div class="col-lg-6 text-center text-lg-right my-auto h-100">
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+<footer th:replace="fragments/fragment :: footer"></footer>
 </body>
 
 </html>
