@@ -7,7 +7,7 @@
         <link rel="stylesheet" th:href="@{/css/util.css}"/>
     </head>
 </head>
-<body style="background-color: #00dbde;">
+<body id="login-body">
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -15,6 +15,7 @@
                 <span class="login100-form-title p-b-49">
                     Login
                 </span>
+
                 <div th:if="${param.error}">
                     <span style="color: red;"> Invalid username or password</span>
                 </div>

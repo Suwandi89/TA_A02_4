@@ -306,10 +306,10 @@ iframe {
     width: 300%;
     height: 100%;
     background: #a64bf4;
-    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -webkit-linear-gradient(right, #d8d8d8, #575757, #d8d8d8, #575757);
+    background: -o-linear-gradient(right, #d8d8d8, #575757, #d8d8d8, #575757);
+    background: -moz-linear-gradient(right, #d8d8d8, #575757, #d8d8d8, #575757);
+    background: linear-gradient(right, #d8d8d8, #575757, #d8d8d8, #575757);
     top: 0;
     left: -100%;
 
@@ -443,4 +443,8 @@ iframe {
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+#login-body{
+    background: rgb(0,117,185);
+    background: radial-gradient(circle, rgb(216,216,216) 0%, rgb(87,87,87) 100%);
 }
