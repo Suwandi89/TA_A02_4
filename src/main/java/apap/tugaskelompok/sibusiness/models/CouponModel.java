@@ -1,10 +1,13 @@
 package apap.tugaskelompok.sibusiness.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +26,7 @@ import java.time.LocalDateTime;
 public class CouponModel implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long idCoupon;
 
     @NotNull
     @Column(name="status", nullable = false)
@@ -47,4 +51,12 @@ public class CouponModel implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime expiryDate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserModel creator;
+
+    @ManyToMany(mappedBy = "listCoupon")
+    List<CouponTypeModel> listCouponType;
 }
