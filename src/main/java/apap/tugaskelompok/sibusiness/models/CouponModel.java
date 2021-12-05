@@ -32,9 +32,8 @@ public class CouponModel implements Serializable {
     @Column(name="status", nullable = false)
     private Boolean status;
 
-    @NotNull
     @Size(max = 16)
-    @Column(name = "coupon_code", nullable = false)
+    @Column(name = "coupon_code", nullable = true)
     private String couponCode;
 
     @NotNull

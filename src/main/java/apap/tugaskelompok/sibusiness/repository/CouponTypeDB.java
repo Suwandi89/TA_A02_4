@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CouponTypeDB extends JpaRepository<CouponTypeModel,Long> {
+    Iterable<CouponTypeModel> findAllByUseDay(String useDay);
 }
