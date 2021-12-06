@@ -3,6 +3,7 @@ package apap.tugaskelompok.sibusiness.controller;
 import apap.tugaskelompok.sibusiness.models.RoleModel;
 import apap.tugaskelompok.sibusiness.models.UserModel;
 import apap.tugaskelompok.sibusiness.repository.UserDB;
+import apap.tugaskelompok.sibusiness.rest.CabangDTO;
 import apap.tugaskelompok.sibusiness.service.RoleService;
 import apap.tugaskelompok.sibusiness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("listRole",listRole);
         return "form-add-user";
+    }
+
+    @GetMapping(value = "/cabang/add")
+    private String addCabang(Model model){
+        CabangDTO cabangDummy = new CabangDTO();
+        model.addAttribute("cabang", cabangDummy);
+        return "form-cabang";
     }
 
     @PostMapping(value = "/add")
