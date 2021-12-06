@@ -39,13 +39,6 @@ public class UserController {
         return "form-add-user";
     }
 
-    @GetMapping(value = "/cabang/add")
-    private String addCabang(Model model){
-        CabangDTO cabangDummy = new CabangDTO();
-        model.addAttribute("cabang", cabangDummy);
-        return "form-cabang";
-    }
-
     @PostMapping(value = "/add")
     private String addUserSubmit(@ModelAttribute UserModel user, Model model){
         userService.addUser(user);

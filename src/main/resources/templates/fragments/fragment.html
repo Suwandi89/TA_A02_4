@@ -30,7 +30,7 @@
                 </li>
                 <li th:classappend="${page == 'User'} ? active : ''" class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">User</a>
-                    <div class="dropdown-menu"><a class="dropdown-item" href="/user/add">Tambah User</a><a class="dropdown-item" href="/user/list">Daftar User</a></div>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="/user/add">Buka Cabang</a><a class="dropdown-item" href="/user/list">Daftar User</a></div>
                 </li>
                 <li th:classappend="${page == 'Item'} ? active : ''"class ="nav-item">
                     <a class="nav-link" href="/">Item</a>
@@ -38,6 +38,10 @@
                 <li th:classappend="${page == 'Kupon'} ? active : ''" class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Kupon</a>
                     <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                </li>
+                <li th:classappend="${page == 'Cabang'} ? active : ''" class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Cabang</a>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="/cabang/add">Buka Cabang</a></div>
                 </li>
             </ul>
             <span class="navbar-text actions"><a class="btn btn-light action-button" role="button" th:href="@{/logout}">Log Out</a></span>

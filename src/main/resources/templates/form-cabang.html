@@ -17,24 +17,19 @@
             <div class="justify-content-center">
                 <h2>Tambah User Baru</h2>
                 <br>
-                <form th:action="@{/user/add}" th:object="${user}" method="POST">
-                    <label>UUID</label>
-                    <input type="text" name="uuid" class="form-control"/>
+                <form th:action="@{/cabang/add}" th:object="${cabang}" method="POST">
+                    <label>Nama Cabang</label>
+                    <input type="text" name="namaCabang" class="form-control"/>
 
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control"/>
+                    <label>Alamat Cabang</label>
+                    <input type="text" name="alamatCabang" class="form-control"/>
 
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control"/>
+                    <label>Nomor Telepon</label>
+                    <input type="text" name="noTelpCabang" class="form-control"/>
 
-                    <label>Role</label>
-                    <select name="role" class="form-select">
-                        <option selected value="">--Pilih Role--</option>
-                        <option th:each="role: ${listRole}"
-                                th:value="${role.id}"
-                                th:text="${role.role}">
-                        </option>
-                    </select>
+                    <label>Ukuran Cabang</label>
+                    <input type="number" name="ukuranCabang" class="form-control"/>
+
                     <br>
                     <br>
 
