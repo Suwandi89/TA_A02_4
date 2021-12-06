@@ -19,7 +19,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "user")
+@Table(name = "pengguna")
 public class UserModel implements Serializable {
     @Id
     @Size(max=200)
