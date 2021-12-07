@@ -21,7 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/jss/**").permitAll()
+                .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/api-docs").permitAll()
+                .antMatchers("/v3/api-docs/**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/user/add").hasAuthority("Manager Business")
+                .antMatchers("/itemFactory/viewall").hasAuthority("Manager Business")
+                .antMatchers("/accept/{id}").hasAuthority("Manager Business")
+                .antMatchers("/reject/{id}").hasAuthority("Manager Business")
                 .antMatchers("/mesin/list/**").hasAnyAuthority("Manager Business","Staff_Product")
                 .anyRequest().authenticated()
                 .and()
@@ -29,7 +36,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll();
+                .logoutSuccessUrl("/login").permitAll()
+                .and()
+                .cors()
+                .and()
+                .csrf()
+                .disable();
     }
 
     @Bean

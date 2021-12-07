@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <title>Daftar User</title>
+    <title>List Item Factory</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
@@ -16,30 +16,33 @@
         <div class="card-body">
             <div class="justify-content-center">
                 <div class="container">
-                    <h2>Daftar Seluruh User SI-BUSINESS</h2>
+                    <h2>Daftar Item Factory</h2>
                     <br>
                     <div class="col">
                         <div>
                             <table class = 'table'>
                                 <thead>
                                 <tr>
-                                    <th>UUID</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                    <th>Action</th>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Kategori</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="user, iterationStatus : ${listUser}"
+                                <tr th:each="itemFactory, iterationStatus : ${listItemFactory}"
                                     th:style="${iterationStatus.even} ? 'font-weight-bold;'">
-                                    <td th:text="${user.uuid}"></td>
-                                    <td th:text="${user.username}"></td>
-                                    <td th:if="${user.role.id==1}">Managemen Business</td>
-                                    <td th:if="${user.role.id==2}">Staff_Product</td>
-                                    <td th:if="${user.role.id==3}">Staff_Marketing</td>
-<!--                                    <td ><a class="btn btn-danger" th:href="@{'/user/update/' + ${user.username}}">Ubah</a></td>-->
-
+                                    <td th:text="${iterationStatus.count}"></td>
+                                    <th th:text="${itemFactory.name}"></th>
+                                    <td th:text="${itemFactory.price}"></td>
+                                    <td th:text="${itemFactory.stock}"></td>
+                                    <td th:text="${itemFactory.category}"></td>
+                                    <td>
+                                        <a class="btn btn-success" th:href="@{/itemFactory/accept/}+${itemFactory.id}">Setuju</a>
+                                        <a class="btn btn-danger" th:href="@{/itemFactory/reject/}+${itemFactory.id}">Tolak</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
