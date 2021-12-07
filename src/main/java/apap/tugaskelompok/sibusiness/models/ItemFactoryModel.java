@@ -32,7 +32,7 @@ public class ItemFactoryModel {
     private String name;
 
     @NotNull
-    @Column(name="status", nullable = false)
+    @Column(name="status", nullable = true)
     private Integer status;
 
     @NotNull
@@ -49,11 +49,11 @@ public class ItemFactoryModel {
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "cluster", nullable = false)
+    @Column(name = "cluster", nullable = true)
     private String cluster;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn
+    @JoinColumn(nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserModel approver;
