@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Daftar Mesin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="form-add-user">
+<nav th:replace="fragments/fragment :: navbar('Mesin')"></nav>
+<div class="container w100vh">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <div class="container">
+                    <h2>Daftar Seluruh Mesin SI-FACTORY</h2>
+                    <br>
+                    <div class="nav-item dropdown">
+                        <button class="dropdown-toggle nav-link btn-primary" aria-expanded="false" data-toggle="dropdown" href="#">Filter Kategori</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/mesin/list/1">BUKU</a>
+                            <a class="dropdown-item" href="/mesin/list/2">DAPUR</a>
+                            <a class="dropdown-item" href="/mesin/list/3">MAKANAN & MINUMAN</a>
+                            <a class="dropdown-item" href="/mesin/list/4">ELEKTRONIK</a>
+                            <a class="dropdown-item" href="/mesin/list/5">FASHION</a>
+                            <a class="dropdown-item" href="/mesin/list/6">KECANTIKAN & PERAWATAN DIRI</a>
+                            <a class="dropdown-item" href="/mesin/list/7">FILM & MUSIK</a>
+                            <a class="dropdown-item" href="/mesin/list/8">GAMING</a>
+                            <a class="dropdown-item" href="/mesin/list/9">GADGET</a>
+                            <a class="dropdown-item" href="/mesin/list/10">KESEHATAN</a>
+                            <a class="dropdown-item" href="/mesin/list/11">RUMAH TANGGA</a>
+                            <a class="dropdown-item" href="/mesin/list/12">FURNITURE</a>
+                            <a class="dropdown-item" href="/mesin/list/13">ALAT & PERANGKAT KERAS</a>
+                            <a class="dropdown-item" href="/mesin/list/14">WEDDING</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col">
+                        <div>
+                            <table class = 'table'>
+                                <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Tanggal dibuat</th>
+                                    <th>Kapasitas Mesin</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="mesin, iterationStatus : ${listMesin}" th:if="!${res}">
+                                    <div th:if="${mesin.idKategori} == ${idKategori}">
+                                        <td th:text="${mesin.namaMesin}"></td>
+                                        <td th:if="${mesin.idKategori}">BUKU</td>
+                                        <td th:if="${mesin.idKategori==2}">DAPUR</td>
+                                        <td th:if="${mesin.idKategori==3}">MAKANAN & MINUMAN</td>
+                                        <td th:if="${mesin.idKategori==4}">ELEKTRONIK</td>
+                                        <td th:if="${mesin.idKategori==5}">FASHION</td>
+                                        <td th:if="${mesin.idKategori==6}">KECANTIKAN & PERAWATAN DIRI</td>
+                                        <td th:if="${mesin.idKategori==7}">FILM & MUSIK</td>
+                                        <td th:if="${mesin.idKategori==8}">GAMING</td>
+                                        <td th:if="${mesin.idKategori==9}">GADGET</td>
+                                        <td th:if="${mesin.idKategori==10}">KESEHATAN</td>
+                                        <td th:if="${mesin.idKategori==11}">RUMAH TANGGA</td>
+                                        <td th:if="${mesin.idKategori==12}">FURNITURE</td>
+                                        <td th:if="${mesin.idKategori==13}">ALAT & PERANGKAT KERAS</td>
+                                        <td th:if="${mesin.idKategori==14}">WEDDING</td>
+                                        <td th:text="${mesin.tanggalDibuat}"></td>
+                                        <td th:text="${mesin.kapasitas}"></td>
+                                    </div>
+                                </tr>
+                                <tr th:each="mesin, iterationStatus : ${listMesin}" th:if="${res}">
+                                    <td th:text="${mesin.namaMesin}"></td>
+                                    <td th:if="${mesin.idKategori}">BUKU</td>
+                                    <td th:if="${mesin.idKategori==2}">DAPUR</td>
+                                    <td th:if="${mesin.idKategori==3}">MAKANAN & MINUMAN</td>
+                                    <td th:if="${mesin.idKategori==4}">ELEKTRONIK</td>
+                                    <td th:if="${mesin.idKategori==5}">FASHION</td>
+                                    <td th:if="${mesin.idKategori==6}">KECANTIKAN & PERAWATAN DIRI</td>
+                                    <td th:if="${mesin.idKategori==7}">FILM & MUSIK</td>
+                                    <td th:if="${mesin.idKategori==8}">GAMING</td>
+                                    <td th:if="${mesin.idKategori==9}">GADGET</td>
+                                    <td th:if="${mesin.idKategori==10}">KESEHATAN</td>
+                                    <td th:if="${mesin.idKategori==11}">RUMAH TANGGA</td>
+                                    <td th:if="${mesin.idKategori==12}">FURNITURE</td>
+                                    <td th:if="${mesin.idKategori==13}">ALAT & PERANGKAT KERAS</td>
+                                    <td th:if="${mesin.idKategori==14}">WEDDING</td>
+                                    <td th:text="${mesin.tanggalDibuat}"></td>
+                                    <td th:text="${mesin.kapasitas}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </form>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary" href="/">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
