@@ -35,7 +35,7 @@
                                     th:style="${iterationStatus.even} ? 'font-weight-bold;'">
                                     <td th:text="${user.uuid}"></td>
                                     <td th:text="${user.username}"></td>
-                                    <td th:if="${user.role.id==1}">Managemen Business</td>
+                                    <td th:if="${user.role.id==1}">Manager Business</td>
                                     <td th:if="${user.role.id==2}">Staff_Product</td>
                                     <td th:if="${user.role.id==3}">Staff_Marketing</td>
 <!--                                    <td ><a class="btn btn-danger" th:href="@{'/user/update/' + ${user.username}}">Ubah</a></td>-->
