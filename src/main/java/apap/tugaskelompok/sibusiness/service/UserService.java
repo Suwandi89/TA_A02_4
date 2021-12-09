@@ -9,5 +9,4 @@ public interface UserService {
     public String encrypt(String password);
     List<UserModel> getUserList();
     UserModel getUserByUsername(String username);
-
 }

@@ -143,6 +143,12 @@
     background: url("../img/bg-masthead.jpg") no-repeat center center;
     background-size:cover;
 }
+
+#list-item{
+  background: url("../img/bg-masthead.jpg") repeat center center;
+  background-size:cover;
+}
+
 .w100vh{
   height: 100vh;
 }

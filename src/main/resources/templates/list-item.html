@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Daftar Item</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="list-item" style="height: 100%;">
+<nav th:replace="fragments/fragment :: navbar('Item')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <div class="container">
+                    <h2>Daftar Seluruh Item SI-ITEM</h2>
+                    <br>
+                    <a href="/itemFactory/viewall" th:if="${role} == 'Manager Business'" class="btn btn-primary">Daftar Request Item Baru</a>
+                    <br>
+                    <br>
+                    <section>
+                        <div th:each="kategori, iterationStat : ${listKategori}">
+                            <div class="col">
+                                <div th:text="${kategori}" style="font-weight: bold;"></div>
+                                <div>
+                                    <table class = 'table'>
+                                        <thead>
+                                        <tr style="background-color: #9fcdff">
+                                            <th>Nama</th>
+                                            <th>Harga</th>
+                                            <th>Kategori</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="item, iterationStatus : ${listItem__${iterationStat.index+1}__}">
+                                            <td th:text="${item.nama}"></td>
+                                            <td th:text="${item.harga}"></td>
+                                            <td th:text="${item.kategori}"></td>
+                                            <td><a class="btn btn-outline-primary" th:href="@{/item/detail/}+${item.uuid}">Lihat Detail</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </section>
+                    <a class="btn btn-primary" href="/">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

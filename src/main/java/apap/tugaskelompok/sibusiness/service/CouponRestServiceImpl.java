@@ -28,11 +28,10 @@ public class CouponRestServiceImpl implements CouponRestService{
         Iterable<CouponTypeModel> couponTypeModels= couponTypeDb.findAllByUseDay(useDay);
         List<CouponTypeModel> couponTypes=new ArrayList<>();
         couponTypeModels.forEach(couponTypes::add);
-        if(couponTypes.isEmpty()){
-            return null;
-        }
+
         CouponTypeModel couponType=couponTypes.get(0);
         List<CouponModel> coupons=couponType.getListCoupon();
+
         List<HashMap> arr=new ArrayList<>();
         for(CouponModel coupon:coupons){
             HashMap<String,String> couponHash=new HashMap<>();

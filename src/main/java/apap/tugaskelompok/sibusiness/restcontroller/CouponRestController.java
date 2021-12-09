@@ -24,7 +24,7 @@ public class CouponRestController {
     private List<HashMap> retrieveCabang(@PathVariable("useDay") String useDay) {
         try {
             return couponRestService.getCouponByDay(useDay);
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "UseDay" + useDay + " Tidak Memiliki Kupon"
             );

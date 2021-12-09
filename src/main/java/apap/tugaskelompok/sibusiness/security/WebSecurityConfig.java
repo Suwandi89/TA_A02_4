@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api-docs").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/cabang/**").hasAuthority("Manager Business")
                 .antMatchers("/user/add").hasAuthority("Manager Business")
                 .antMatchers("/itemFactory/viewall").hasAuthority("Manager Business")
                 .antMatchers("/accept/{id}").hasAuthority("Manager Business")

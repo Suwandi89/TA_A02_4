@@ -6,6 +6,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 
 @Service
 @Transactional
@@ -16,7 +17,7 @@ public class CabangRestServiceImpl implements CabangRestService{
     }
 
     @Override
-    public Mono<String> addCabangRequest(CabangDTO cabangDummy) {
-        return this.webClient.post().uri("/rest/cabang/full").syncBody(cabangDummy).retrieve().bodyToMono(String.class);
+    public HashMap addCabangRequest(CabangDTO cabangDummy) {
+        return this.webClient.post().uri("/api/cabang").syncBody(cabangDummy).retrieve().bodyToMono(HashMap.class).block();
     }
 }

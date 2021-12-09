@@ -9,13 +9,13 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar('Item')"></nav>
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
 
 <div class="container">
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 th:text="'Item Factory dengan nama ' + ${name} + ' diterima'"></h2>
+                <h2 th:text="'Pembuatan cabang ' + ${message}"></h2>
                 <a class="btn btn-primary" href="/">Kembali ke Home</a>
             </div>
         </div>

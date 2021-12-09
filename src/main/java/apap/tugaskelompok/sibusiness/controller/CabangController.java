@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
+import java.util.HashMap;
+
 @Controller
 @RequestMapping("/cabang")
 public class CabangController {
@@ -28,9 +30,9 @@ public class CabangController {
     }
     @PostMapping(value = "/add")
     private String bukaCabang(@ModelAttribute CabangDTO cabang, Model model){
-        Mono<String> result=cabangRestService.addCabangRequest(cabang);
-        System.out.println(result);
-        model.addAttribute("cabang", cabang);
-        return "form-cabang";
+        HashMap result=cabangRestService.addCabangRequest(cabang);
+        String message=result.get("message").toString();
+        model.addAttribute("message", message);
+        return "accepted-cabang";
     }
 }
