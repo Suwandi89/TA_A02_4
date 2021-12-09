@@ -4,6 +4,8 @@ import apap.tugaskelompok.sibusiness.models.CouponModel;
 import apap.tugaskelompok.sibusiness.rest.CabangDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.HashMap;
+
 public interface CabangRestService {
-    Mono<String> addCabangRequest(CabangDTO cabangDummy);
+    HashMap addCabangRequest(CabangDTO cabangDummy);
 }
