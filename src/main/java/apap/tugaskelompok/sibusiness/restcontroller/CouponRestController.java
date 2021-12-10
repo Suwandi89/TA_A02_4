@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,13 +22,15 @@ public class CouponRestController {
     @Autowired
     private CouponRestService couponRestService;
 
-    @GetMapping(value = "/coupon/{useDay}")
-    private List<HashMap> retrieveCabang(@PathVariable("useDay") String useDay) {
+    @GetMapping(value = "/coupon")
+    private List<HashMap> retrieveCabang() {
         try {
+            Date date=java.util.Calendar.getInstance().getTime();
+            String useDay = new SimpleDateFormat("EEEE").format(date);
             return couponRestService.getCouponByDay(useDay);
         } catch (Exception e) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "UseDay" + useDay + " Tidak Memiliki Kupon"
+                    HttpStatus.NOT_FOUND, "UseDay Tidak Memiliki Kupon"
             );
         }
     }
