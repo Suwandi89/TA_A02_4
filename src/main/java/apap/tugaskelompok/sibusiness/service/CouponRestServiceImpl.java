@@ -31,7 +31,7 @@ public class CouponRestServiceImpl implements CouponRestService{
 
         CouponTypeModel couponType=couponTypes.get(0);
         List<CouponModel> coupons=couponType.getListCoupon();
-
+        
         List<HashMap> arr=new ArrayList<>();
         for(CouponModel coupon:coupons){
             HashMap<String,String> couponHash=new HashMap<>();
