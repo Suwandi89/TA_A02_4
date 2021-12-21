@@ -9,9 +9,9 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
-<body id="form-add-user">
+<body id="list-item">
 <nav th:replace="fragments/fragment :: navbar('Mesin')"></nav>
-<div class="container w100vh">
+<div class="container">
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
@@ -43,6 +43,7 @@
                             <table class = 'table'>
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nama</th>
                                     <th>Kategori</th>
                                     <th>Tanggal dibuat</th>
@@ -52,8 +53,9 @@
                                 <tbody>
                                 <tr th:each="mesin, iterationStatus : ${listMesin}" th:if="!${res}">
                                     <div th:if="${mesin.idKategori} == ${idKategori}">
-                                        <td th:text="${mesin.namaMesin}"></td>
-                                        <td th:if="${mesin.idKategori}">BUKU</td>
+                                        <td th:text="${mesin.idMesin}"></td>
+                                        <td th:text="${mesin.nama}"></td>
+                                        <td th:if="${mesin.idKategori==1}">BUKU</td>
                                         <td th:if="${mesin.idKategori==2}">DAPUR</td>
                                         <td th:if="${mesin.idKategori==3}">MAKANAN & MINUMAN</td>
                                         <td th:if="${mesin.idKategori==4}">ELEKTRONIK</td>
@@ -72,8 +74,9 @@
                                     </div>
                                 </tr>
                                 <tr th:each="mesin, iterationStatus : ${listMesin}" th:if="${res}">
-                                    <td th:text="${mesin.namaMesin}"></td>
-                                    <td th:if="${mesin.idKategori}">BUKU</td>
+                                    <td th:text="${mesin.idMesin}"></td>
+                                    <td th:text="${mesin.nama}"></td>
+                                    <td th:if="${mesin.idKategori==1}">BUKU</td>
                                     <td th:if="${mesin.idKategori==2}">DAPUR</td>
                                     <td th:if="${mesin.idKategori==3}">MAKANAN & MINUMAN</td>
                                     <td th:if="${mesin.idKategori==4}">ELEKTRONIK</td>
