@@ -23,7 +23,7 @@ public class MesinController {
             @PathVariable(name = "idKategori",required = false) Integer idKategori,
             Model model
     ){
-        List<MesinDTO> listMesin = (List<MesinDTO>) mesinRestService.getMesinList();
+        List<MesinDTO> listMesin = mesinRestService.getMesinList().getResult();
         int res = 0;
         if (idKategori != null){
             model.addAttribute("idKategori",idKategori);
