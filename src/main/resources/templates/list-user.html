@@ -27,7 +27,6 @@
                                     <th>Username</th>
                                     <th>Role</th>
                                     <th>Action</th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +37,7 @@
                                     <td th:if="${user.role.id==1}">Manager Business</td>
                                     <td th:if="${user.role.id==2}">Staff_Product</td>
                                     <td th:if="${user.role.id==3}">Staff_Marketing</td>
-<!--                                    <td ><a class="btn btn-danger" th:href="@{'/user/update/' + ${user.username}}">Ubah</a></td>-->
+                                    <td ><a class="btn btn-danger" th:href="@{'/user/update/' + ${user.uuid}}">Ubah</a></td>
 
                                 </tr>
                                 </tbody>
