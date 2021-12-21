@@ -11,5 +11,4 @@ public interface UserService {
     UserModel getUserByUsername(String username);
     UserModel getUserByUuid(String uuid);
     void updateUser(UserModel user);
-
 }

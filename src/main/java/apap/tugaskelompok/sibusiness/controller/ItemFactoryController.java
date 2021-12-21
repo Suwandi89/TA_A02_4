@@ -47,6 +47,7 @@ public class ItemFactoryController {
         itemFactoryRestService.updateItemFactory(itemFactoryModel);
         model.addAttribute("name", itemFactoryModel.getName());
         model.addAttribute("isApproved", 1);
+        itemFactoryRestService.deleteItemFactory(itemFactoryModel);
         return "accepted-itemFactory";
     }
 
