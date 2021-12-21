@@ -3,6 +3,7 @@ package apap.tugaskelompok.sibusiness.service;
 import apap.tugaskelompok.sibusiness.models.CouponModel;
 import apap.tugaskelompok.sibusiness.models.CouponTypeModel;
 import apap.tugaskelompok.sibusiness.repository.CouponDB;
+import apap.tugaskelompok.sibusiness.repository.CouponTypeDB;
 import apap.tugaskelompok.sibusiness.rest.CouponDTO;
 import apap.tugaskelompok.sibusiness.rest.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,22 @@ public class CouponServiceImpl implements CouponService{
     @Autowired
     private CouponDB couponDb;
 
+    @Autowired
+    private CouponTypeDB couponTypeDB;
+
     @Override
     public Pair<List<CouponDTO>,List<String>> getAllCoupon() {
-        Iterable<CouponModel> couponModels= couponDb.findAll();
-        List<CouponModel> couponModelList=new ArrayList<>();
-        couponModels.forEach(couponModelList::add);
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAll();
+        List<CouponTypeModel> couponTypeModelList=new ArrayList<>();
+        couponTypeModels.forEach(couponTypeModelList::add);
         List<CouponDTO> newCouponList=new ArrayList<>();
         List<String> dayUsage=new ArrayList<>();
 
-        for(CouponModel couponModel:couponModelList){
-            if(couponModel.getListCouponType().size()!=0){
-                for(int i=0;i<couponModel.getListCouponType().size();i++){
+        for(CouponTypeModel couponTypeModel:couponTypeModelList){
+            if(couponTypeModel.getListCoupon().size()!=0){
+                for(CouponModel couponModel: couponTypeModel.getListCoupon()){
                     CouponDTO couponDTO=new CouponDTO();
-                    couponDTO.setCouponCode(generateCouponCode(couponModel,couponModel.getListCouponType().get(i).getUseDay()));
+                    couponDTO.setCouponCode(generateCouponCode(couponModel,couponTypeModel.getUseDay()));
                     couponDTO.setIdCoupon(couponModel.getIdCoupon());
                     couponDTO.setCouponName(couponModel.getCouponName());
                     couponDTO.setDiscountAmount(couponModel.getDiscountAmount());
@@ -40,7 +44,7 @@ public class CouponServiceImpl implements CouponService{
                     couponDTO.setStatus(couponModel.getStatus());
                     couponDTO.setCreator(couponModel.getCreator());
                     newCouponList.add(couponDTO);
-                    dayUsage.add(couponModel.getListCouponType().get(i).getUseDay());
+                    dayUsage.add(couponTypeModel.getUseDay());
                 }
             }
         }
