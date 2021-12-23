@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <title>List Item Factory</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="form-add-user">
+<nav th:replace="fragments/fragment :: navbar('Item')"></nav>
+<div class="container w100vh">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <div class="container">
+          <h2>Daftar Kupon Request</h2>
+          <br>
+          <div class="col">
+            <div>
+              <table class = 'table'>
+                <thead>
+                <tr>
+                  <th>Id Coupon</th>
+                  <th>Coupon Code</th>
+                  <th>Coupon Name</th>
+                  <th>Discount Amount</th>
+                  <th>Expiry Date</th>
+                  <th>Creator</th>
+                  <th>Action</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="coupon, iterationStatus : ${listAll}"
+                    th:style="${iterationStatus.even} ? 'font-weight-bold;'">
+                  <td th:text="${coupon.idCoupon}"></td>
+                  <td th:text="${coupon.couponCode}"></td>
+                  <td th:text="${coupon.couponName}"></td>
+                  <td th:text="${coupon.discountAmount}"></td>
+                  <td th:text="${coupon.expiryDate}"></td>
+                  <td th:text="${coupon.creator.username}"></td>
+                  <td>
+                    <span><a class="btn btn-success" th:href="@{/coupon/accept/}+${coupon.idCoupon}" th:if="${role.role} == 'Staff_Marketing'">Setuju</a></span>
+                    <span><a class="btn btn-success" th:href="@{/coupon/reject/}+${coupon.idCoupon}" th:if="${role.role} == 'Staff_Marketing'">Tolak</a></span>
+<!--                    <span><a class="btn btn-success" th:href="@{/itemFactory/detail/}+${itemFactory.id}">Detail</a></span>-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+              </form>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
