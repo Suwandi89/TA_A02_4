@@ -10,7 +10,7 @@
 </head>
 
 <body id="list-item" style="height: 100%;">
-<nav th:replace="fragments/fragment :: navbar('Item')"></nav>
+<nav th:replace="fragments/fragment :: navbar('Kupon')"></nav>
 <div class="container">
     <div class="card m-4 p-4">
         <div class="card-body">
@@ -47,8 +47,9 @@
                                             <td th:text="${coupon.expiryDate}"></td>
                                             <td th:text="${coupon.creator.username}"></td>
                                             <td th:text="${useDay[iterationStatus.index]}"></td>
-
-                                            <!--                                            <td><a class="btn btn-outline-primary" th:href="@{/item/detail/}+${item.uuid}">Lihat Detail</a></td>-->
+                                            <td>
+                                                <a class="btn btn-danger" th:href="@{/coupon/delete/}+${coupon.idCoupon}" onClick='return confirmSubmit()'>Hapus</a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -63,5 +64,15 @@
     </div>
 </div>
 <footer th:replace="fragments/fragment :: footer"></footer>
+<script LANGUAGE="JavaScript">
+    function confirmSubmit()
+    {
+        var agree=confirm("Apakah anda yakin ingin menghapus?");
+        if (agree)
+            return true ;
+        else
+            return false ;
+    }
+</script>
 </body>
 </html>
