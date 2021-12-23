@@ -117,4 +117,20 @@ public class CouponServiceImpl implements CouponService{
         couponDb.save(newCoupon);
 
     }
+
+    @Override
+    public void deleteCoupon(CouponModel coupon, String useDay){
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAllByUseDay(useDay);
+        List<CouponTypeModel> couponTypes=new ArrayList<>();
+        couponTypeModels.forEach(couponTypes::add);
+
+        CouponTypeModel couponType=couponTypes.get(0);
+
+        couponType.getListCoupon().remove(coupon);
+        coupon.getListCouponType().remove(couponType);
+        if (coupon.getListCouponType().size()==0) {
+            couponDb.delete(coupon);
+        }
+
+    }
 }

@@ -12,4 +12,5 @@ public interface CouponService {
     Pair<List<CouponDTO>,List<String>> getAllCoupon();
     String generateCouponCode(CouponModel coupon,String useDay);
     void updateCoupon(CouponModel coupon,String useDay);
+    void deleteCoupon(CouponModel coupon, String useDay);
 }

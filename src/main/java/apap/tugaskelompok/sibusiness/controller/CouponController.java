@@ -67,4 +67,23 @@ public class CouponController {
         couponService.updateCoupon(coupon,useDay);
         return "home";
     }
+
+    @GetMapping(value = "/delete/{idCoupon}/{useDay}")
+    public String deleteCoupon(
+            @PathVariable(name = "idCoupon") Long idCoupon,
+            @PathVariable(name = "useDay") String useD,
+            Model model
+    ){
+        CouponModel coupon = couponService.getCouponById(idCoupon);
+        couponService.deleteCoupon(coupon, useD);
+        Pair<List<CouponDTO>, List<String>> pair=couponService.getAllCoupon();
+        List<CouponDTO> listCoupon=pair.key;
+        List<String> useDay=pair.value;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserModel user = userService.getUserByUsername(authentication.getName());
+        model.addAttribute("listCoupon",listCoupon);
+        model.addAttribute("useDay",useDay);
+        model.addAttribute("role",user.getRole().getRole());
+        return "list-kupon";
+    }
 }
