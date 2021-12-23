@@ -46,6 +46,7 @@ public class CouponServiceImpl implements CouponService{
 
         for(CouponTypeModel couponTypeModel:couponTypeModelList){
             System.out.println(couponTypeModel.getUseDay());
+            System.out.println(couponTypeModel.getListCoupon().size());
 
             if(couponTypeModel.getListCoupon().size()!=0){
                 for(CouponModel couponModel: couponTypeModel.getListCoupon()){
