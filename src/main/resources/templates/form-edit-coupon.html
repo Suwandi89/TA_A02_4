@@ -34,7 +34,14 @@
                     <input required class="form-control" type="number" name="discountAmount" th:value="*{discountAmount}" />
                     <br><br>
 
-
+                    <label>Creator</label>
+                    <select name="uuid" class="form-control">
+                        <option th:each ="user: ${userList}"
+                                th:value = "${user.uuid}"
+                                th:text = "${user.username}">
+                        </option>
+                    </select>
+                    <br><br>
 
                     <label>Status</label>
                     <select name="status" th:value="*{status}" class="form-control">
