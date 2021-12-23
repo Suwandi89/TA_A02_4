@@ -27,10 +27,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/cabang/**").hasAuthority("Manager Business")
                 .antMatchers("/user/add").hasAuthority("Manager Business")
+                .antMatchers("/user/update/**").hasAuthority("Manager Business")
+                .antMatchers("/coupon/delete/**").hasAuthority("Staff_Marketing")
                 .antMatchers("/itemFactory/viewall").hasAuthority("Manager Business")
                 .antMatchers("/accept/{id}").hasAuthority("Manager Business")
                 .antMatchers("/reject/{id}").hasAuthority("Manager Business")
                 .antMatchers("/mesin/list/**").hasAnyAuthority("Manager Business","Staff_Product")
+                .antMatchers("/coupon/add").hasAnyAuthority("Staff_Product","Staff_Marketing")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,13 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder encoder() { return new BCryptPasswordEncoder(); }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(encoder())
-//                .withUser("kijangSatu").password(encoder().encode("nasiGoreng"))
-//                .roles("Manager Business");
-//    }
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .passwordEncoder(encoder())
+                .withUser("kijangSatu").password(encoder().encode("nasiGoreng"))
+                .roles("Manager Business");
+    }
 
     @Autowired
     private UserDetailsService userDetailsService;

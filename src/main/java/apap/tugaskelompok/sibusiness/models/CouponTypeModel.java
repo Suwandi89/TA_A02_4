@@ -27,7 +27,7 @@ public class CouponTypeModel {
     @Column(name = "use_day", nullable = false)
     private String useDay;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "coupon_coupontype",
             joinColumns = @JoinColumn(name = "id_coupontype"),

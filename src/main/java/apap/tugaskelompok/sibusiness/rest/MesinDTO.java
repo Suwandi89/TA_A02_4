@@ -4,17 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
 public class MesinDTO {
-    private String namaMesin;
+    private int idMesin;
+    private String nama;
     private int idKategori;
     private String tanggalDibuat;
     private int kapasitas;
 
-    public String getNamaMesin() {
-        return namaMesin;
+    public int getIdMesin() {
+        return idMesin;
     }
 
-    public void setNamaMesin(String namaMesin) {
-        this.namaMesin = namaMesin;
+    public void setIdMesin(int idMesin) {
+        this.idMesin = idMesin;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public int getIdKategori() {

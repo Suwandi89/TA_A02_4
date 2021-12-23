@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Tambah Coupon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="form-add-coupon">
+<nav th:replace="fragments/fragment :: navbar('User')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Tambah Coupon</h2>
+                <br>
+                <form th:action="@{/coupon/add}" th:object="${coupon}" method="POST">
+                    <label>Coupon Name</label>
+                    <input type="text" name="couponName" class="form-control" required />
+
+                    <label>Discount Amount</label>
+                    <input required min="0" type="number" name="discountAmount" class="form-control" />
+
+                    <label>Expiry Date</label>
+                    <br>
+                    <input required type="datetime-local" name="expiryDate"/>
+                    <br><br>
+
+                    <label>Coupon Type</label> <br>
+                    <ul>
+                        <li th:each="type : ${listCouponType}">
+                            <input type="checkbox" name="couponValues" th:value="${type.idCoupontype}" th:field="*{listCouponType}"/>
+                            <label th:text="${type.useDay}"></label>
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="btn btn-link" href="/">Home</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+
+</html>

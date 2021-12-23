@@ -11,10 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +41,29 @@ public class UserController {
         userService.addUser(user);
         model.addAttribute("user", user);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/update/{uuid}")
+    private String updateUserFormPage(
+            @PathVariable(name = "uuid") String uuid,
+            Model model
+    ){
+        UserModel user = userService.getUserByUuid(uuid);
+        List<RoleModel> listRole = roleService.findAll();
+        model.addAttribute("user", user);
+        model.addAttribute("listRole",listRole);
+        return "form-update-user";
+    }
+
+    @PostMapping(value = "/update")
+    private String updateUserSubmit(
+            @ModelAttribute UserModel user,
+            Model model
+    ){
+        userService.updateUser(user);
+        String uuid = user.getUuid();
+        model.addAttribute("uuid",uuid);
+        return "update-user";
     }
 
     @GetMapping(value = "/list")
