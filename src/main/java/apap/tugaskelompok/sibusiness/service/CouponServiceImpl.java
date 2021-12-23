@@ -9,11 +9,13 @@ import apap.tugaskelompok.sibusiness.rest.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,6 +25,16 @@ public class CouponServiceImpl implements CouponService{
 
     @Autowired
     private CouponTypeDB couponTypeDB;
+
+    @Override
+    public CouponModel getCouponById(Long couponId) {
+        Optional<CouponModel> coupon=couponDb.findByIdCoupon(couponId);
+        if(coupon.isPresent()){
+            CouponModel couponModel=coupon.get();
+            return couponModel;
+        }
+        return null;
+    }
 
     @Override
     public Pair<List<CouponDTO>,List<String>> getAllCoupon() {
@@ -70,5 +82,51 @@ public class CouponServiceImpl implements CouponService{
         result+= useDay.substring(0,3).toUpperCase(Locale.ROOT);
         result+=coupon.getExpiryDate().format(DateTimeFormatter.ofPattern("ddmmyy"));
         return result;
+    }
+
+    @Override
+    public void updateCoupon(CouponModel coupon, String useDay) {
+        if(coupon.getListCouponType().size()==1){
+            couponDb.save(coupon);
+            return;
+        }
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAllByUseDay(useDay);
+        List<CouponTypeModel> couponTypes=new ArrayList<>();
+        couponTypeModels.forEach(couponTypes::add);
+
+        CouponTypeModel couponType=couponTypes.get(0);
+        CouponModel oldCoupon=getCouponById(coupon.getIdCoupon());
+
+        oldCoupon.getListCouponType().remove(couponType);
+        CouponModel newCoupon=new CouponModel();
+        newCoupon.setCouponName(coupon.getCouponName());
+        newCoupon.setCreator(coupon.getCreator());
+        newCoupon.setDiscountAmount(coupon.getDiscountAmount());
+        newCoupon.setStatus(coupon.getStatus());
+        newCoupon.setExpiryDate(coupon.getExpiryDate());
+        List<CouponTypeModel> listCouponType=new ArrayList<>();
+        listCouponType.add(couponType);
+        newCoupon.setListCouponType(listCouponType);
+
+        couponType.getListCoupon().remove(oldCoupon);
+        couponType.getListCoupon().add(newCoupon);
+        couponDb.save(coupon);
+
+    }
+
+    @Override
+    public void deleteCoupon(CouponModel coupon, String useDay){
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAllByUseDay(useDay);
+        List<CouponTypeModel> couponTypes=new ArrayList<>();
+        couponTypeModels.forEach(couponTypes::add);
+
+        CouponTypeModel couponType=couponTypes.get(0);
+
+        couponType.getListCoupon().remove(coupon);
+        coupon.getListCouponType().remove(couponType);
+        if (coupon.getListCouponType().size()==0) {
+            couponDb.delete(coupon);
+        }
+
     }
 }

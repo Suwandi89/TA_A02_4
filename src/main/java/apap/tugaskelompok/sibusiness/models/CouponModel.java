@@ -56,6 +56,6 @@ public class CouponModel implements Serializable {
     @JsonIgnore
     private UserModel creator;
 
-    @ManyToMany(mappedBy = "listCoupon")
+    @ManyToMany(mappedBy = "listCoupon",cascade = CascadeType.ALL)
     List<CouponTypeModel> listCouponType;
 }
