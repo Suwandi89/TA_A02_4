@@ -52,10 +52,11 @@ public class CouponController {
         Pair<List<CouponDTO>, List<String>> pair=couponService.getAllCoupon();
         List<CouponDTO> listCoupon=pair.key;
         List<String> useDay=pair.value;
-        List<CouponModel> kuponList = couponDB.findAllByStatus(true);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserModel user = userService.getUserByUsername(authentication.getName());
         model.addAttribute("listCoupon",listCoupon);
         model.addAttribute("useDay",useDay);
-        model.addAttribute("listCoupon",kuponList);
+        model.addAttribute("role",user.getRole().getRole());
 
         return "list-kupon";
     }
