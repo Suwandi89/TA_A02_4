@@ -45,6 +45,8 @@ public class CouponServiceImpl implements CouponService{
         List<String> dayUsage=new ArrayList<>();
 
         for(CouponTypeModel couponTypeModel:couponTypeModelList){
+            System.out.println(couponTypeModel.getUseDay());
+
             if(couponTypeModel.getListCoupon().size()!=0){
                 for(CouponModel couponModel: couponTypeModel.getListCoupon()){
                     CouponDTO couponDTO=new CouponDTO();
@@ -100,7 +102,8 @@ public class CouponServiceImpl implements CouponService{
         oldCoupon.getListCouponType().remove(couponType);
         CouponModel newCoupon=new CouponModel();
         newCoupon.setCouponName(coupon.getCouponName());
-        newCoupon.setCreator(coupon.getCreator());
+        newCoupon.setCreator(oldCoupon.getCreator());
+        System.out.println(newCoupon.getCreator().getUsername());
         newCoupon.setDiscountAmount(coupon.getDiscountAmount());
         newCoupon.setStatus(coupon.getStatus());
         newCoupon.setExpiryDate(coupon.getExpiryDate());
@@ -110,7 +113,8 @@ public class CouponServiceImpl implements CouponService{
 
         couponType.getListCoupon().remove(oldCoupon);
         couponType.getListCoupon().add(newCoupon);
-        couponDb.save(coupon);
+        couponTypeDB.save(couponType);
+        couponDb.save(newCoupon);
 
     }
 }
