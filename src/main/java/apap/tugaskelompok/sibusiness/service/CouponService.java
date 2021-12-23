@@ -13,4 +13,7 @@ public interface CouponService {
     void addCoupon(CouponModel coupon);
     CouponModel acceptCoupon(Long id);
     void rejectCoupon(Long id);
+    CouponModel getCouponById(Long couponId);
+    void updateCoupon(CouponModel coupon,String useDay);
+    void deleteCoupon(CouponModel coupon, String useDay);
 }

@@ -6,6 +6,7 @@ import apap.tugaskelompok.sibusiness.models.UserModel;
 import apap.tugaskelompok.sibusiness.repository.CouponDB;
 import apap.tugaskelompok.sibusiness.repository.CouponTypeDB;
 import apap.tugaskelompok.sibusiness.repository.UserDB;
+import apap.tugaskelompok.sibusiness.rest.CabangDTO;
 import apap.tugaskelompok.sibusiness.rest.CouponDTO;
 import apap.tugaskelompok.sibusiness.rest.ItemDTO;
 import apap.tugaskelompok.sibusiness.rest.Pair;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -125,5 +127,48 @@ public class CouponController {
         model.addAttribute("listAll", listCoupon);
         model.addAttribute("role", user.getRole());
         return "viewall-couponRequest";
+    }
+    @GetMapping(value = "/edit/{idCoupon}/{useDay}")
+    public String editCoupon(
+            @PathVariable(name = "idCoupon") Long idCoupon,
+            @PathVariable(name = "useDay") String useDay,
+            Model model
+    ) {
+        CouponModel couponModel=couponService.getCouponById(idCoupon);
+        model.addAttribute("coupon",couponModel);
+        model.addAttribute("useDay",useDay);
+        model.addAttribute("userList",userService.getUserList());
+
+        return "form-edit-coupon";
+    }
+    @PostMapping(value = "/edit/{idCoupon}/{useDay}")
+    public String bukaCabang(
+            @PathVariable(name = "idCoupon") Long idCoupon,
+            @PathVariable(name = "useDay") String useDay,
+            @ModelAttribute CouponModel coupon,
+            Model model
+    ){
+        System.out.println(coupon.getListCouponType());
+        couponService.updateCoupon(coupon,useDay);
+        return "home";
+    }
+
+    @GetMapping(value = "/delete/{idCoupon}/{useDay}")
+    public String deleteCoupon(
+            @PathVariable(name = "idCoupon") Long idCoupon,
+            @PathVariable(name = "useDay") String useD,
+            Model model
+    ){
+        CouponModel coupon = couponService.getCouponById(idCoupon);
+        couponService.deleteCoupon(coupon, useD);
+        Pair<List<CouponDTO>, List<String>> pair=couponService.getAllCoupon();
+        List<CouponDTO> listCoupon=pair.key;
+        List<String> useDay=pair.value;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserModel user = userService.getUserByUsername(authentication.getName());
+        model.addAttribute("listCoupon",listCoupon);
+        model.addAttribute("useDay",useDay);
+        model.addAttribute("role",user.getRole().getRole());
+        return "list-kupon";
     }
 }

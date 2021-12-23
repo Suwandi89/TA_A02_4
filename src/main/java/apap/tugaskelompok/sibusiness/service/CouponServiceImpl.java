@@ -9,11 +9,13 @@ import apap.tugaskelompok.sibusiness.rest.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,6 +26,15 @@ public class CouponServiceImpl implements CouponService{
     @Autowired
     private CouponTypeDB couponTypeDB;
 
+    @Override
+    public CouponModel getCouponById(Long couponId) {
+        Optional<CouponModel> coupon=couponDb.findByIdCoupon(couponId);
+        if(coupon.isPresent()){
+            CouponModel couponModel=coupon.get();
+            return couponModel;
+        }
+        return null;
+    }
 
     @Override
     public Pair<List<CouponDTO>,List<String>> getAllCoupon() {
@@ -34,6 +45,8 @@ public class CouponServiceImpl implements CouponService{
         List<String> dayUsage=new ArrayList<>();
 
         for(CouponTypeModel couponTypeModel:couponTypeModelList){
+            System.out.println(couponTypeModel.getUseDay());
+
             if(couponTypeModel.getListCoupon().size()!=0){
                 for(CouponModel couponModel: couponTypeModel.getListCoupon()){
                     CouponDTO couponDTO=new CouponDTO();
@@ -87,7 +100,53 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
-    public void rejectCoupon(Long id){
+    public void rejectCoupon(Long id) {
         couponDb.deleteById(id);
+    }
+    public void updateCoupon(CouponModel coupon, String useDay) {
+        if(coupon.getListCouponType().size()==1){
+            couponDb.save(coupon);
+            return;
+        }
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAllByUseDay(useDay);
+        List<CouponTypeModel> couponTypes=new ArrayList<>();
+        couponTypeModels.forEach(couponTypes::add);
+
+        CouponTypeModel couponType=couponTypes.get(0);
+        CouponModel oldCoupon=getCouponById(coupon.getIdCoupon());
+
+        oldCoupon.getListCouponType().remove(couponType);
+        CouponModel newCoupon=new CouponModel();
+        newCoupon.setCouponName(coupon.getCouponName());
+        newCoupon.setCreator(oldCoupon.getCreator());
+        System.out.println(newCoupon.getCreator().getUsername());
+        newCoupon.setDiscountAmount(coupon.getDiscountAmount());
+        newCoupon.setStatus(coupon.getStatus());
+        newCoupon.setExpiryDate(coupon.getExpiryDate());
+        List<CouponTypeModel> listCouponType=new ArrayList<>();
+        listCouponType.add(couponType);
+        newCoupon.setListCouponType(listCouponType);
+
+        couponType.getListCoupon().remove(oldCoupon);
+        couponType.getListCoupon().add(newCoupon);
+        couponTypeDB.save(couponType);
+        couponDb.save(newCoupon);
+
+    }
+
+    @Override
+    public void deleteCoupon(CouponModel coupon, String useDay){
+        Iterable<CouponTypeModel> couponTypeModels= couponTypeDB.findAllByUseDay(useDay);
+        List<CouponTypeModel> couponTypes=new ArrayList<>();
+        couponTypeModels.forEach(couponTypes::add);
+
+        CouponTypeModel couponType=couponTypes.get(0);
+
+        couponType.getListCoupon().remove(coupon);
+        coupon.getListCouponType().remove(couponType);
+        if (coupon.getListCouponType().size()==0) {
+            couponDb.delete(coupon);
+        }
+
     }
 }

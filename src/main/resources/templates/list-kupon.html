@@ -51,6 +51,11 @@
 
                                             <!--                                            <td><a class="btn btn-outline-primary" th:href="@{/item/detail/}+${item.uuid}">Lihat Detail</a></td>-->
 
+<!--                                            <td th:text="${useDay[iterationStatus.index]}"></td>-->
+                                            <td th:if="${role} == 'Staff_Marketing'">
+                                                <a class="btn btn-outline-primary" th:href="@{/coupon/edit/}+${coupon.idCoupon}+'/'+${useDay[iterationStatus.index]}">Edit</a>
+                                                <a class="btn btn-danger" th:href="@{/coupon/delete/}+${coupon.idCoupon}+'/'+${useDay[iterationStatus.index]}" onClick='return confirmSubmit()'>Hapus</a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
