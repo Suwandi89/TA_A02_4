@@ -152,3 +152,8 @@
 .w100vh{
   height: 100vh;
 }
+
+#form-add-coupon{
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  background-size:cover;
+}

@@ -87,6 +87,22 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
+    public  void addCoupon(CouponModel coupon){
+        couponDb.save(coupon);
+        System.out.println(coupon.getListCouponType());
+    }
+
+    @Override
+    public CouponModel acceptCoupon(Long id){
+        CouponModel coupon = couponDb.getById(id);
+        coupon.setStatus(true);
+        return coupon;
+    }
+
+    @Override
+    public void rejectCoupon(Long id) {
+        couponDb.deleteById(id);
+    }
     public void updateCoupon(CouponModel coupon, String useDay) {
         if(coupon.getListCouponType().size()==1){
             couponDb.save(coupon);
