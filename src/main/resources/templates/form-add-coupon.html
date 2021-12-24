@@ -7,6 +7,21 @@
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const checker = document.getElementById('checkme');
+            const sendbtn = document.getElementById('sendNewSms');
+            sendbtn.disabled=true;
+            checker.onchange = function() {
+                if(sendbtn.disabled==true){
+                    sendbtn.disabled = false;
+                }
+                else{
+                    sendbtn.disabled=true;
+                }
+            };
+        });
+    </script>
 </head>
 
 <body id="form-add-coupon">
@@ -31,15 +46,15 @@
 
                     <label>Coupon Type</label> <br>
                     <ul>
-                        <li th:each="type : ${listCouponType}">
-                            <input type="checkbox" name="couponValues" th:value="${type.idCoupontype}" th:field="*{listCouponType}" required/>
+                        <li th:each="type : ${listCouponType}" id="check">
+                            <input id="checkme" type="checkbox" name="couponValues" th:value="${type.idCoupontype}" th:field="*{listCouponType}"/>
                             <label th:text="${type.useDay}"></label>
                         </li>
                     </ul>
                     <br>
                     <br>
 
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button id="sendNewSms" class="btn btn-primary" type="submit" >Submit</button>
                     <a class="btn btn-link" href="/">Home</a>
                 </form>
             </div>
