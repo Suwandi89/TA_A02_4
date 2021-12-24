@@ -19,16 +19,16 @@
                 <br>
                 <form th:action="@{/user/add}" th:object="${user}" method="POST">
                     <label>UUID</label>
-                    <input type="text" name="uuid" class="form-control"/>
+                    <input type="text" required name="uuid" class="form-control"/>
 
                     <label>Username</label>
-                    <input type="text" name="username" class="form-control"/>
+                    <input type="text" required name="username" class="form-control"/>
 
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control"/>
+                    <input type="password" required name="password" class="form-control"/>
 
                     <label>Role</label>
-                    <select name="role" class="form-select">
+                    <select required name="role" class="form-select">
                         <option selected value="">--Pilih Role--</option>
                         <option th:each="role: ${listRole}"
                                 th:value="${role.id}"
