@@ -32,7 +32,7 @@
                     <label>Coupon Type</label> <br>
                     <ul>
                         <li th:each="type : ${listCouponType}">
-                            <input type="checkbox" name="couponValues" th:value="${type.idCoupontype}" th:field="*{listCouponType}"/>
+                            <input type="checkbox" name="couponValues" th:value="${type.idCoupontype}" th:field="*{listCouponType}" required/>
                             <label th:text="${type.useDay}"></label>
                         </li>
                     </ul>
