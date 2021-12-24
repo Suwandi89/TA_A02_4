@@ -35,11 +35,11 @@ public class CouponRestServiceImpl implements CouponRestService{
         List<HashMap> arr=new ArrayList<>();
         for(CouponModel coupon:coupons){
             HashMap<String,String> couponHash=new HashMap<>();
-            couponHash.put("ID Coupon", coupon.getIdCoupon().toString());
-            couponHash.put("Coupon Code", generateCouponCode(coupon,useDay));
-            couponHash.put("Coupon Name", coupon.getCouponName());
-            couponHash.put("Discount Amount", coupon.getDiscountAmount().toString());
-            couponHash.put("Expiry Date", coupon.getExpiryDate().toString());
+            couponHash.put("idCoupon", coupon.getIdCoupon().toString());
+            couponHash.put("couponCode", generateCouponCode(coupon,useDay));
+            couponHash.put("couponName", coupon.getCouponName());
+            couponHash.put("discountAmount", coupon.getDiscountAmount().toString());
+            couponHash.put("expiryDate", coupon.getExpiryDate().toString());
             arr.add(couponHash);
         }
         return arr;
