@@ -40,7 +40,7 @@
                                     <td th:text="${itemFactory.stock}"></td>
                                     <td th:text="${itemFactory.category}"></td>
                                     <td>
-                                        <a class="btn btn-success" th:href="@{/itemFactory/accept/}+${itemFactory.id}">Setuju</a>
+                                        <a class="btn btn-success" th:href="@{/itemFactory/approve/}+${itemFactory.id}">Setuju</a>
                                         <a class="btn btn-danger" th:href="@{/itemFactory/reject/}+${itemFactory.id}">Tolak</a>
                                     </td>
                                 </tr>

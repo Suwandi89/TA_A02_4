@@ -4,6 +4,7 @@ import apap.tugaskelompok.sibusiness.models.ItemFactoryModel;
 import apap.tugaskelompok.sibusiness.models.UserModel;
 import apap.tugaskelompok.sibusiness.service.ItemFactoryRestService;
 import apap.tugaskelompok.sibusiness.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,10 +33,10 @@ public class ItemFactoryController {
         return "viewall-itemFactory";
     }
 
-    @RequestMapping("/accept/{id}")
+    @RequestMapping("/si-item/itemFactory/approve/{id}")
     public String acceptItemFactory(
             @PathVariable Long id,
-            Model model) {
+            Model model ){
         ItemFactoryModel itemFactoryModel = itemFactoryRestService.getById(id);
         itemFactoryModel.setStatus(1);
         System.out.println(itemFactoryModel.getName());

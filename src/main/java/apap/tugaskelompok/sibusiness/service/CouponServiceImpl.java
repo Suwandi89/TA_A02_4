@@ -45,8 +45,6 @@ public class CouponServiceImpl implements CouponService{
         List<String> dayUsage=new ArrayList<>();
 
         for(CouponTypeModel couponTypeModel:couponTypeModelList){
-            System.out.println(couponTypeModel.getUseDay());
-
             if(couponTypeModel.getListCoupon().size()!=0){
                 for(CouponModel couponModel: couponTypeModel.getListCoupon()){
                     CouponDTO couponDTO=new CouponDTO();
@@ -57,8 +55,10 @@ public class CouponServiceImpl implements CouponService{
                     couponDTO.setExpiryDate(couponModel.getExpiryDate());
                     couponDTO.setStatus(couponModel.getStatus());
                     couponDTO.setCreator(couponModel.getCreator());
-                    newCouponList.add(couponDTO);
-                    dayUsage.add(couponTypeModel.getUseDay());
+                    if(couponDTO.status==true){
+                        newCouponList.add(couponDTO);
+                        dayUsage.add(couponTypeModel.getUseDay());
+                    }
                 }
             }
         }
@@ -89,6 +89,9 @@ public class CouponServiceImpl implements CouponService{
     @Override
     public  void addCoupon(CouponModel coupon){
         couponDb.save(coupon);
+        for(CouponTypeModel couponType:coupon.getListCouponType()){
+            couponType.getListCoupon().add(coupon);
+        }
         System.out.println(coupon.getListCouponType());
     }
 
@@ -105,6 +108,8 @@ public class CouponServiceImpl implements CouponService{
     }
     public void updateCoupon(CouponModel coupon, String useDay) {
         if(coupon.getListCouponType().size()==1){
+            CouponModel oldCoupon=getCouponById(coupon.getIdCoupon());
+            coupon.setCreator(oldCoupon.getCreator());
             couponDb.save(coupon);
             return;
         }
@@ -131,7 +136,6 @@ public class CouponServiceImpl implements CouponService{
         couponType.getListCoupon().add(newCoupon);
         couponTypeDB.save(couponType);
         couponDb.save(newCoupon);
-
     }
 
     @Override

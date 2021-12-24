@@ -56,6 +56,7 @@ public class CouponController {
         model.addAttribute("listCoupon",listCoupon);
         model.addAttribute("useDay",useDay);
         model.addAttribute("listCoupon",kuponList);
+        model.addAttribute("role",user.getRole().getRole());
 
         return "list-kupon";
     }
